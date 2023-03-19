@@ -20,7 +20,7 @@ public class Main {
             turnCount = 9;
 
 
-            System.out.println("\nPlease enter your name: ");
+            System.out.println("Please enter your name: ");
             String name = keyboard.nextLine();
             System.out.println("Please enter your symbol ('X' or 'O')");
             String UserSymbol = keyboard.nextLine();
@@ -48,7 +48,7 @@ public class Main {
             }
 
 
-            System.out.println("Which player would you like to go first or later ?\n1 - First || 2 - Later");
+            System.out.println("Would you like to go first or later ?\n1 - First || 2 - Later");
             int order = keyboard.nextInt();
 
             if(menu == 1) {   // weak AI
