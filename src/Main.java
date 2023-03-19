@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Random;
 
 
 public class Main {
@@ -11,10 +10,8 @@ public class Main {
 
         int turnCount = 0;
         String compSym = "";
-        AI ai = new AI();
+        weakAI weak = new weakAI();
 
-
-        whole:
         while (true){
 
             String[][] board = { {"1", "2", "3"},
@@ -58,25 +55,25 @@ public class Main {
 
                 while (order == 1) {
 
-                    ai.boardDisplay(board);
+                    weak.boardDisplay(board);
                     System.out.println();
                     System.out.println(name + "'s turn !");
                     System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
                     int location = keyboard.nextInt();
-                    ai.userInsert(board, location, UserSymbol);
+                    weak.userInsert(board, location, UserSymbol);
                     turnCount--;
-                    if (ai.stateIdentifier (board,UserSymbol, compSym, name)){
+                    if (weak.stateIdentifier (board,UserSymbol, compSym, name)){
                         break;
                     }
                     if (turnCount == 0){
-                        ai.boardDisplay(board);
+                        weak.boardDisplay(board);
                         System.out.println("\nEnd of the game\nIts a draw !");
                         break;
                     }
                     System.out.println("\nAI's turn !\n");
-                    ai.compInsert(board, compSym);
+                    weak.compInsert(board, compSym);
                     turnCount--;
-                    if (ai.stateIdentifier (board,UserSymbol, compSym, name)){
+                    if (weak.stateIdentifier (board,UserSymbol, compSym, name)){
                         break;
                     }
 
@@ -86,23 +83,24 @@ public class Main {
                 while (order == 2){
                     System.out.println();
                     System.out.println("\nAI's turn !\n");
-                    ai.compInsert(board, compSym);
-                    ai.boardDisplay(board);
+                    weak.compInsert(board, compSym);
                     turnCount--;
-                    if (ai.stateIdentifier (board,UserSymbol, compSym, name)){
+                    if (weak.stateIdentifier (board,UserSymbol, compSym, name)){
                         break;
                     }
                     if (turnCount == 0){
+                        weak.boardDisplay(board);
                         System.out.println("\nEnd of the game\nIts a draw !");
                         break;
                     }
+                    weak.boardDisplay(board);
                     System.out.println();
                     System.out.println(name + "'s turn !");
                     System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
                     int location = keyboard.nextInt();
-                    ai.userInsert(board, location, UserSymbol);
+                    weak.userInsert(board, location, UserSymbol);
                     turnCount--;
-                    if (ai.stateIdentifier (board,UserSymbol, compSym, name)){
+                    if (weak.stateIdentifier (board,UserSymbol, compSym, name)){
                         break;
                     }
                 }

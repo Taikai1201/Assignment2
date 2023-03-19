@@ -1,8 +1,7 @@
 import java.util.Random;
 
-public class AI {
-    private int num;
-    public AI() {
+public class weakAI {
+    public weakAI() {
     }
     public void boardDisplay(String[][] data) {
 
