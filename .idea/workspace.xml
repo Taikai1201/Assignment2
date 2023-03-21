@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6689aa-049c-4ae0-87d4-0cd45b4b99de" name="Changes" comment="update layout">
+    <list default="true" id="de6689aa-049c-4ae0-87d4-0cd45b4b99de" name="Changes" comment="update bonus part">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +68,7 @@
       <updated>1679163273739</updated>
       <workItem from="1679163275107" duration="312000" />
       <workItem from="1679163656633" duration="27078000" />
-      <workItem from="1679419483663" duration="6078000" />
+      <workItem from="1679419483663" duration="6860000" />
     </task>
     <task id="LOCAL-00001" summary="update test">
       <created>1679164043948</created>
@@ -118,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679425164781</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update bonus part">
+      <created>1679425815646</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679425815646</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +136,7 @@
     <MESSAGE value="update test" />
     <MESSAGE value="update" />
     <MESSAGE value="update layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="update layout" />
+    <MESSAGE value="update bonus part" />
+    <option name="LAST_COMMIT_MESSAGE" value="update bonus part" />
   </component>
 </project>

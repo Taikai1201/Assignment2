@@ -168,7 +168,7 @@ public class Main {
                 }
 
                 if (menu == 2) {  // intelligent AI
-                    System.out.println("2 works");
+                    System.out.println("start intelligent AI part from here");
                 }
 
             }
