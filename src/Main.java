@@ -9,8 +9,6 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
 
         int turnCount = 0;
-        String compSym = "";
-        String player2Sym = "";
         weakAI weak = new weakAI();
         Master mas = new Master();
 
@@ -31,6 +29,7 @@ public class Main {
             }
 
             if (mode == 1) { // with AI mode
+                String compSym = "";
 
                 System.out.println("Please enter your name: ");
                 String name;
@@ -174,10 +173,12 @@ public class Main {
 
             }
             if (mode == 2) { // 2 player mode
+
                 String first = "";
                 String later = "";
                 String firstSym = "";
                 String laterSym = "";
+                String player2Sym = "";
 
                 System.out.println("Please enter the name of the player 1:");
                 String player1;
@@ -279,13 +280,27 @@ public class Main {
 
                 }
 
+                System.out.println("\nWould you like to start again ?\nY/y for Yes || N/n for NO");
+                String again;
+
+                try {
+                    again = keyboard.nextLine();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                again = keyboard.nextLine();
+
+                if (again.equals("Y") || again.equals("y")) {
+                    continue;
+                } else if (again.equals("N") || again.equals("n")) {
+                    break;
+                }
 
             }
 
         }
 
         System.out.println("Thank you for playing our game!");
-
 
     }
 }
