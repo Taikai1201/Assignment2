@@ -1,27 +1,99 @@
 import java.util.Random;
 
 public class weakAI {
-    public weakAI() {
-    }
+    public weakAI() {}
 
     Master mas = new Master();
 
     public boolean userInsert(String[][] data, int loc, String sym) {
 
 
-        if (loc == 1) { data[0][0] = sym; return true; }
-        if (loc == 2) { data[0][1] = sym; return true; }
-        if (loc == 3) { data[0][2] = sym; return true; }
-        if (loc == 4) { data[1][0] = sym; return true; }
-        if (loc == 5) { data[1][1] = sym; return true; }
-        if (loc == 6) { data[1][2] = sym; return true; }
-        if (loc == 7) { data[2][0] = sym; return true; }
-        if (loc == 8) { data[2][1] = sym; return true; }
-        if (loc == 9) { data[2][2] = sym; return true; }
+        if (loc == 1) {
+            if (data[0][0].equals("X") || data[0][0].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[0][0] = sym;
+                return true;
+            }
+        }
 
+        if (loc == 2) {
+            if (data[0][1].equals("X") || data[0][1].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[0][1] = sym;
+                return true;
+            }
+        }
+        if (loc == 3) {
+            if (data[0][2].equals("X") || data[0][2].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[0][2] = sym;
+                return true;
+            }
+        }
+        if (loc == 4) {
+            if (data[1][0].equals("X") || data[1][0].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[1][0] = sym;
+                return true;
+            }
+        }
+        if (loc == 5) {
+            if (data[1][1].equals("X") || data[1][1].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[1][1] = sym;
+                return true;
+            }
+        }
+        if (loc == 6) {
+            if (data[1][2].equals("X") || data[1][2].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[1][2] = sym;
+                return true;
+            }
+        }
+        if (loc == 7) {
+            if (data[2][0].equals("X") || data[2][0].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[2][0] = sym;
+                return true;
+            }
+        }
+        if (loc == 8) {
+            if (data[2][1].equals("X") || data[2][1].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[2][1] = sym;
+                return true;
+            }
+        }
+        if (loc == 9) {
+            if (data[2][2].equals("X") || data[2][2].equals("O")){
+                System.out.println("This position has already been filled, please try other one !");
+                return false;
+            }else{
+                data[2][2] = sym;
+                return true;
+            }
+        }
 
         return false;
     }
+
     public boolean compInsert(String[][]data, String sym){
         Random random = new Random();
 
@@ -110,9 +182,7 @@ public class weakAI {
                 }
             }
 
-
         }
-
 
         return true;
     }

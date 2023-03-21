@@ -18,97 +18,93 @@ public class Master {
         }
     }
 
-    public boolean stateIdentifier (String[][] data, String userSym, String compSym, String username){
-
-        String[][] board = { {"1", "2", "3"},
-                {"4", "5", "6"},
-                {"7", "8", "9"} };
+    public boolean stateIdentifier (String[][] data, String user1Sym, String user2Sym, String username1, String username2){
 
         if (data[0][0].equals(data[0][1]) && data[0][1].equals(data[0][2])){
             boardDisplay(data);
-            if (data[0][0].equals(userSym)){
+            if (data[0][0].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][0].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][0].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[1][0].equals(data[1][1]) && data[1][1].equals(data[1][2])){
             boardDisplay(data);
-            if (data[1][0].equals(userSym)){
+            if (data[1][0].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[1][0].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[1][0].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[2][0].equals(data[2][1]) && data[2][1].equals(data[2][2])){
             boardDisplay(data);
-            if (data[2][0].equals(userSym)){
+            if (data[2][0].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[2][0].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[2][0].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[0][0].equals(data[1][0]) && data[1][0].equals(data[2][0])){
             boardDisplay(data);
-            if (data[0][0].equals(userSym)){
+            if (data[0][0].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][0].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][0].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[0][1].equals(data[1][1]) && data[1][1].equals(data[2][1])){
             boardDisplay(data);
-            if (data[0][1].equals(userSym)){
+            if (data[0][1].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][1].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][1].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[0][2].equals(data[1][2]) && data[1][2].equals(data[2][2])){
             boardDisplay(data);
-            if (data[0][2].equals(userSym)){
+            if (data[0][2].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][2].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][2].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[0][0].equals(data[1][1]) && data[1][1].equals(data[2][2])){
             boardDisplay(data);
-            if (data[0][0].equals(userSym)){
+            if (data[0][0].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][0].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][0].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
         if (data[0][2].equals(data[1][1]) && data[1][1].equals(data[2][0])){
             boardDisplay(data);
-            if (data[0][2].equals(userSym)){
+            if (data[0][2].equals(user1Sym)){
                 System.out.println("\nEnd of the game");
-                System.out.println(username + " has won the game, Congratulations !");
-            } else if (data[0][2].equals(compSym)) {
+                System.out.println(username1 + " has won the game, great game !");
+            } else if (data[0][2].equals(user2Sym)) {
                 System.out.println("\nEnd of the game");
-                System.out.println("AI has won the game, hope you win next time !");
+                System.out.println(username2 + " has won the game, great game !");
             }
             return true;
         }
