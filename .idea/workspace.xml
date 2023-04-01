@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de6689aa-049c-4ae0-87d4-0cd45b4b99de" name="Changes" comment="update bonus part">
+      <change afterPath="$PROJECT_DIR$/src/IntelligentAi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Master.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Master.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/weakAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weakAI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +72,12 @@
       <workItem from="1679163275107" duration="312000" />
       <workItem from="1679163656633" duration="27078000" />
       <workItem from="1679419483663" duration="6860000" />
+      <workItem from="1680239132199" duration="320000" />
+      <workItem from="1680242604171" duration="1933000" />
+      <workItem from="1680295374476" duration="11000" />
+      <workItem from="1680295597991" duration="6943000" />
+      <workItem from="1680319711992" duration="3254000" />
+      <workItem from="1680331715382" duration="3425000" />
     </task>
     <task id="LOCAL-00001" summary="update test">
       <created>1679164043948</created>
@@ -131,6 +140,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update test" />
