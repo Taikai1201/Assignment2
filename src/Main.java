@@ -19,11 +19,15 @@ public class Main {
                                 {"4", "5", "6"},
                                 {"7", "8", "9"}};
             turnCount = 9;
-            System.out.println("Select your mode(1 for with AI, 2 is with another player)");
+            System.out.println("Select your mode(1 for with AI, 2 is with another player,3 to exit the game)");
             int mode = keyboard.nextInt();
-            while (mode < 1 || mode > 2) {
+            while (mode < 1 || mode > 3) {
                 System.out.println("Invalid option, please select the mode you would like to play:\n 1 - With AI || 2 - Two players");
                 mode = keyboard.nextInt();
+            }
+            if (mode == 3){
+                System.out.println("Thank you for playing our game!");
+                break;
             }
             if (mode == 1) { // with AI mode
                 String compSym = "";
@@ -155,44 +159,88 @@ public class Main {
                 }
 
                 if (menu == 2) {  // intelligent AI
-                    smartAi.playerMark = UserSymbol;
-                    smartAi.computerMark = compSym;
-                    IntelligentAi.createBoard();
-                    IntelligentAi.drawBoard();
-                    smartAi.currentPlayerMark = UserSymbol;
-                    IntelligentAi.isHumanTurn = true;
-                    while (!IntelligentAi.checkForWin() && !IntelligentAi.checkForTie()) {
-                        if (IntelligentAi.isHumanTurn) {
-                            IntelligentAi.getPlayerMove();
-                        } else {
-                            System.out.println("AI's move");
-                            IntelligentAi.getComputerMove();
-                        }
+                    while (order == 1){
+                        smartAi.playerMark = UserSymbol;
+                        smartAi.computerMark = compSym;
+                        IntelligentAi.createBoard();
                         IntelligentAi.drawBoard();
-                        IntelligentAi.changePlayer();
-                    }
-                    if (IntelligentAi.checkForWin()) {
-                        if (IntelligentAi.isHumanTurn) {
-                            System.out.println("Congratulations, " + name + "! You won!");
-                        } else {
-                            System.out.println("The computer won. Better luck next time, " + name + ".");
+                        smartAi.currentPlayerMark = UserSymbol;
+                        IntelligentAi.isHumanTurn = true;
+                        while (!IntelligentAi.checkForWin() && !IntelligentAi.checkForTie()) {
+                            if (IntelligentAi.isHumanTurn) {
+                                IntelligentAi.getPlayerMove();
+                            } else {
+                                System.out.println("AI's move");
+                                IntelligentAi.getComputerMove();
+                            }
+                            IntelligentAi.drawBoard();
+                            IntelligentAi.changePlayer();
                         }
-                    } else {
-                        System.out.println("It's a tie.");
-                    }
-                    System.out.println("\nWould you like to start again ?\nY/y for Yes || N/n for NO");
-                    String again;
-                    try {
+                        if (IntelligentAi.checkForWin()) {
+                            if (IntelligentAi.isHumanTurn) {
+                                System.out.println("The computer won. Better luck next time," + name + ".");
+                            } else {
+                                System.out.println("Congratulation, " + name + " has won!.");
+                            }
+                        } else {
+                            System.out.println("It's a tie.");
+                        }
+                        System.out.println("\nPlay again?\nY/y for Yes || N/n for NO");
+                        String again;
+
+                        try {
+                            again = keyboard.nextLine();
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
                         again = keyboard.nextLine();
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
+
+                        if (again.equals("Y") || again.equals("y")) {
+                            continue;
+                        } else if (again.equals("N") || again.equals("n")) {
+                            break;
+                        }
                     }
-                    again = keyboard.nextLine();
-                    if (again.equals("Y") || again.equals("y")) {
-                        continue;
-                    } else if (again.equals("N") || again.equals("n")) {
-                        break;
+                    while (order == 2){
+                        smartAi.playerMark = compSym;
+                        smartAi.computerMark = UserSymbol;
+                        IntelligentAi.createBoard();
+                        smartAi.currentPlayerMark = compSym;
+                        IntelligentAi.isHumanTurn = true;
+                        while (!IntelligentAi.checkForWin() && !IntelligentAi.checkForTie()) {
+                            if (IntelligentAi.isHumanTurn == false) {
+                                IntelligentAi.getPlayerMove();
+                            } else {
+                                System.out.println("AI's move");
+                                IntelligentAi.getComputerMove();
+                            }
+                            IntelligentAi.drawBoard();
+                            IntelligentAi.changePlayer();
+                        }
+                        if (IntelligentAi.checkForWin()) {
+                            if (IntelligentAi.isHumanTurn) {
+                                System.out.println("Congratulation, " + name + " has won!.");
+                            } else {
+                                System.out.println("The computer won. Better luck next time," + name + ".");
+                            }
+                        } else {
+                            System.out.println("It's a tie.");
+                        }
+                        System.out.println("\nWould you like to start again ?\nY/y for Yes || N/n for NO");
+                        String again;
+                        try {
+                            again = keyboard.nextLine();
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                        again = keyboard.nextLine();
+                        if (again.equals("Y") || again.equals("y")) {
+                            continue;
+                        } else if (again.equals("N") || again.equals("n")) {
+                            break;
+                        }
                     }
+
 
                 }
 
@@ -321,8 +369,6 @@ public class Main {
                 }
 
             }
-
         }
-        System.out.println("Thank you for playing our game!");
     }
 }
