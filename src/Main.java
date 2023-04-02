@@ -6,28 +6,25 @@ public class Main {
 
         System.out.println("----------Tic-Tac-Toe game---------");
         System.out.println();
+
         Scanner keyboard = new Scanner(System.in);
 
         int turnCount = 0;
         weakAI weak = new weakAI();
         Master mas = new Master();
+        IntelligentAi smartAi = new IntelligentAi();
 
         while (true) {
-
             String[][] board = {{"1", "2", "3"},
                                 {"4", "5", "6"},
                                 {"7", "8", "9"}};
             turnCount = 9;
-
-            System.out.println("Please select the mode you would like to play:\n 1 - With AI || 2 - Two players");
+            System.out.println("Select your mode(1 for with AI, 2 is with another player)");
             int mode = keyboard.nextInt();
-
             while (mode < 1 || mode > 2) {
-                System.out.println("\nThat is not a valid option in the system, please try again");
-                System.out.println("Please select the mode you would like to play:\n 1 - With AI || 2 - Two players");
+                System.out.println("Invalid option, please select the mode you would like to play:\n 1 - With AI || 2 - Two players");
                 mode = keyboard.nextInt();
             }
-
             if (mode == 1) { // with AI mode
                 String compSym = "";
 
@@ -41,11 +38,10 @@ public class Main {
                 }
                 name = keyboard.nextLine();
                 System.out.println("Please enter your symbol ('X' or 'O')");
-                String UserSymbol = keyboard.nextLine();
+                String UserSymbol = keyboard.nextLine().toUpperCase();
 
                 while (!UserSymbol.equals("X") && !UserSymbol.equals("O")) {
-                    System.out.println("\nThat is not a valid option in the system, please try again");
-                    System.out.println("Please enter your symbol ('X' or 'O')");
+                    System.out.println("\nInvalid option,Please enter your symbol ('X' or 'O')");
                     UserSymbol = keyboard.nextLine();
                 }
 
@@ -55,24 +51,17 @@ public class Main {
                     compSym = "X";
                 }
 
-                System.out.println("Please select the difficulty of the AI:");
-                System.out.println("\n1 - Weak || 2 - Intelligent");
+                System.out.println("Select your AI(1 for dumb AI, 2 for smart AI)");
                 int menu = keyboard.nextInt();
-
                 while (menu < 1 || menu > 2) {
-                    System.out.println("\nThat is not a valid option in the system, please try again");
-                    System.out.println("\nPlease select the difficulty of the AI:");
-                    System.out.println("\n1 - Weak || 2 - Intelligent");
+                    System.out.println("\nInvalid option, select 1 for dumb AI, 2 for smart AI");
                     menu = keyboard.nextInt();
                 }
 
-
-                System.out.println("Would you like to go first or later ?\n1 - First || 2 - Later");
+                System.out.println("Would you like to go first? (1 for yes, 2 for no)");
                 int order = keyboard.nextInt();
-
                 while (order < 1 || order > 2) {
-                    System.out.println("\nThat is not a valid option in the system, please try again");
-                    System.out.println("Would you like to go first or later ?\n1 - First || 2 - Later");
+                    System.out.println("Invalid option, would you like to go first? (1 for yes, 2 for no)");
                     order = keyboard.nextInt();
                 }
 
@@ -83,12 +72,11 @@ public class Main {
                         System.out.println();
                         System.out.println(name + "'s turn !");
                         while (true) {
-                            System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
+                            System.out.println("\nChoose a position to play:");
                             int location = keyboard.nextInt();
 
                             while (location < 1 || location > 9) {
-                                System.out.println("\nThat is not a valid option in the system, please try again");
-                                System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
+                                System.out.println("\nInvalid option, please enter the number of the board you would like to insert your symbol:");
                                 location = keyboard.nextInt();
                             }
                             if (weak.userInsert(board, location, UserSymbol)) {
@@ -131,12 +119,11 @@ public class Main {
                         System.out.println();
                         System.out.println(name + "'s turn !");
                         while (true) {
-                            System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
+                            System.out.println("\nChoose a position to play:");
                             int location = keyboard.nextInt();
 
                             while (location < 1 || location > 9) {
-                                System.out.println("\nThat is not a valid option in the system, please try again");
-                                System.out.println("\nPlease enter the number of the board you would like to insert your symbol:");
+                                System.out.println("\nInvalid option, please enter the number of the board you would like to insert your symbol:");
                                 location = keyboard.nextInt();
                             }
                             if (weak.userInsert(board, location, UserSymbol)) {
@@ -149,7 +136,7 @@ public class Main {
                         }
                     }
 
-                    System.out.println("\nWould you like to start again ?\nY/y for Yes || N/n for NO");
+                    System.out.println("\nPlay again?\nY/y for Yes || N/n for NO");
                     String again;
 
                     try {
@@ -168,7 +155,45 @@ public class Main {
                 }
 
                 if (menu == 2) {  // intelligent AI
-                    System.out.println("start intelligent AI part from here");
+                    smartAi.playerMark = UserSymbol;
+                    smartAi.computerMark = compSym;
+                    IntelligentAi.createBoard();
+                    IntelligentAi.drawBoard();
+                    smartAi.currentPlayerMark = UserSymbol;
+                    IntelligentAi.isHumanTurn = true;
+                    while (!IntelligentAi.checkForWin() && !IntelligentAi.checkForTie()) {
+                        if (IntelligentAi.isHumanTurn) {
+                            IntelligentAi.getPlayerMove();
+                        } else {
+                            System.out.println("AI's move");
+                            IntelligentAi.getComputerMove();
+                        }
+                        IntelligentAi.drawBoard();
+                        IntelligentAi.changePlayer();
+                    }
+                    if (IntelligentAi.checkForWin()) {
+                        if (IntelligentAi.isHumanTurn) {
+                            System.out.println("Congratulations, " + name + "! You won!");
+                        } else {
+                            System.out.println("The computer won. Better luck next time, " + name + ".");
+                        }
+                    } else {
+                        System.out.println("It's a tie.");
+                    }
+                    System.out.println("\nWould you like to start again ?\nY/y for Yes || N/n for NO");
+                    String again;
+                    try {
+                        again = keyboard.nextLine();
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                    again = keyboard.nextLine();
+                    if (again.equals("Y") || again.equals("y")) {
+                        continue;
+                    } else if (again.equals("N") || again.equals("n")) {
+                        break;
+                    }
+
                 }
 
             }
@@ -189,11 +214,10 @@ public class Main {
                 }
                 player1 = keyboard.nextLine();
                 System.out.println("Please enter your symbol ('X' or 'O')");
-                String player1Sym = keyboard.nextLine();
+                String player1Sym = keyboard.nextLine().toUpperCase();
 
                 while (!player1Sym.equals("X") && !player1Sym.equals("O")) {
-                    System.out.println("\nThat is not a valid option in the system, please try again");
-                    System.out.println("Please enter your symbol ('X' or 'O')");
+                    System.out.println("Invalid option, please enter your symbol ('X' or 'O')");
                     player1Sym = keyboard.nextLine();
                 }
 
@@ -299,8 +323,6 @@ public class Main {
             }
 
         }
-
         System.out.println("Thank you for playing our game!");
-
     }
 }
