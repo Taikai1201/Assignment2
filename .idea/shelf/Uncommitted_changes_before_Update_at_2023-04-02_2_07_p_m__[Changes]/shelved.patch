@@ -1,0 +1,185 @@
+Index: src/IntelligentAi.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class IntelligentAi {\r\n    public IntelligentAi() {}\r\n    static String computerMark,playerMark;\r\n\r\n    Master mas = new Master();\r\n    // The Minimax algorithm\r\n    public boolean userInsert(String[][] data, int loc, String sym) {\r\n        int row = (loc - 1) / 3;\r\n        int col = (loc - 1) % 3;\r\n        if (data[row][col].equals(\"X\") || data[row][col].equals(\"O\")) {\r\n            System.out.println(\"This position has already been filled, please try another one!\");\r\n            return false;\r\n        } else {\r\n            data[row][col] = sym;\r\n            return true;\r\n        }\r\n    }\r\n\r\n\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/IntelligentAi.java b/src/IntelligentAi.java
+--- a/src/IntelligentAi.java	
++++ b/src/IntelligentAi.java	
+@@ -1,19 +1,112 @@
+ public class IntelligentAi {
+-    public IntelligentAi() {}
+-    static String computerMark,playerMark;
+-
+-    Master mas = new Master();
+-    // The Minimax algorithm
+-    public boolean userInsert(String[][] data, int loc, String sym) {
+-        int row = (loc - 1) / 3;
+-        int col = (loc - 1) % 3;
+-        if (data[row][col].equals("X") || data[row][col].equals("O")) {
+-            System.out.println("This position has already been filled, please try another one!");
++    private static boolean isValidMove(int row, int col) {
++        if (row < 0 || row > 2 || col < 0 || col > 2) {
++            return false;
++        }
++        if (board[row][col] != ' ') {
+             return false;
+-        } else {
+-            data[row][col] = sym;
++        }
++        return true;
++    }
++
++    private static boolean isGameOver() {
++        if (hasWon(humanPlayer)) {
++            System.out.println("You won!");
++            return true;
++        }
++        if (hasWon(computerPlayer)) {
++            System.out.println("Computer won!");
++            return true;
++        }
++        for (int i = 0; i < 3; i++) {
++            for (int j = 0; j < 3; j++) {
++                if (board[i][j] == ' ') {
++                    return false;
++                }
++            }
++        }
++        System.out.println("Tie game!");
++        return true;
++    }
++
++    private static boolean hasWon(char player) {
++        for (int i = 0; i < 3; i++) {
++            if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
++                return true;
++            }
++            if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
++                return true;
++            }
++        }
++        if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
++            return true;
++        }
++        if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+             return true;
+         }
++        return false;
++    }
++
++    private static int[] getComputerMove() {
++        int[] result = new int[2];
++        int bestScore = Integer.MIN_VALUE;
++
++        for (int i = 0; i < 3; i++) {
++            for (int j = 0; j < 3; j++) {
++                if (board[i][j] == ' ') {
++                    board[i][j] = computerPlayer;
++                    int score = minimax(board, 0, false);
++                    board[i][j] = ' ';
++                    if (score > bestScore) {
++                        bestScore = score;
++                        result[0] = i;
++                        result[1] = j;
++                    }
++                }
++            }
++        }
++
++        return result;
++    }
++
++    private static int minimax(char[][] board, int depth, boolean isMaximizing) {
++        if (hasWon(humanPlayer)) {
++            return -10;
++        }
++        if (hasWon(computerPlayer)) {
++            return 10;
++        }
++        if (isGameOver()) {
++            return 0;
++        }
++
++        if (isMaximizing) {
++            int bestScore = Integer.MIN_VALUE;
++            for (int i = 0; i < 3; i++) {
++                for (int j = 0; j < 3; j++) {
++                    if (board[i][j] == ' ') {
++                        board[i][j] = computerPlayer;
++                        int score = minimax(board, depth + 1, false);
++                        board[i][j] = ' ';
++                        bestScore = Math.max(score, bestScore);
++                    }
++                }
++            }
++            return bestScore;
++        } else {
++            int bestScore = Integer.MAX_VALUE;
++            for (int i = 0; i < 3; i++) {
++                for (int j = 0; j < 3; j++) {
++                    if (board[i][j] == ' ') {
++                        board[i][j] = humanPlayer;
++                        int score = minimax(board, depth + 1, true);
++                        board[i][j] = ' ';
++                        bestScore = Math.min(score, bestScore);
++                    }
++                }
++            }
++            return bestScore;
++        }
+     }
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"de6689aa-049c-4ae0-87d4-0cd45b4b99de\" name=\"Changes\" comment=\"update bonus part\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/IntelligentAi.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Master.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Master.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/weakAI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/weakAI.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"cd68f538-e96a-4cd0-ae6d-0f60d473a24b\" />\r\n        <option name=\"url\" value=\"https://github.com/Taikai1201/Assignment2.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2NCLlgWTAm0gVGDz0zIUMweDRYL\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"de6689aa-049c-4ae0-87d4-0cd45b4b99de\" name=\"Changes\" comment=\"\" />\r\n      <created>1679163273739</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1679163273739</updated>\r\n      <workItem from=\"1679163275107\" duration=\"312000\" />\r\n      <workItem from=\"1679163656633\" duration=\"27078000\" />\r\n      <workItem from=\"1679419483663\" duration=\"6860000\" />\r\n      <workItem from=\"1680239132199\" duration=\"320000\" />\r\n      <workItem from=\"1680242604171\" duration=\"1933000\" />\r\n      <workItem from=\"1680295374476\" duration=\"11000\" />\r\n      <workItem from=\"1680295597991\" duration=\"6943000\" />\r\n      <workItem from=\"1680319711992\" duration=\"3254000\" />\r\n      <workItem from=\"1680331715382\" duration=\"3425000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"update test\">\r\n      <created>1679164043948</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679164043948</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"update test\">\r\n      <created>1679164355458</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679164355458</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"update test\">\r\n      <created>1679188370333</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679188370333</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"update test\">\r\n      <created>1679188818107</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679188818107</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"update\">\r\n      <created>1679189138235</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679189138235</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"update layout\">\r\n      <created>1679419883279</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679419883279</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"update layout\">\r\n      <created>1679425164781</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679425164781</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"update bonus part\">\r\n      <created>1679425815646</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679425815646</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"update test\" />\r\n    <MESSAGE value=\"update\" />\r\n    <MESSAGE value=\"update layout\" />\r\n    <MESSAGE value=\"update bonus part\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update bonus part\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,11 +5,8 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="de6689aa-049c-4ae0-87d4-0cd45b4b99de" name="Changes" comment="update bonus part">
+-      <change afterPath="$PROJECT_DIR$/src/IntelligentAi.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Master.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Master.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/weakAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weakAI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/IntelligentAi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IntelligentAi.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,6 +22,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+   &quot;lastFilter&quot;: {
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"openjdk-18 (2)\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="openjdk-18 (2)" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="openjdk-18 (2)" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
